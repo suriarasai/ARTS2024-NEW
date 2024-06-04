@@ -5,7 +5,7 @@ kafka-topics.bat --topic second_topic --create --partitions 1 --replication-fact
 kafka-topics.bat --list --bootstrap-server localhost:9092
 
 #Shell 4
-kafka-console-producer --topic first_topic --broker-list localhost:9092
+kafka-console-producer --topic first_topic --bootstrap-server localhost:9092
 kafka-console-producer --topic first_topic --producer-property acks=all --broker-list localhost:9092
 
 
@@ -18,4 +18,5 @@ kafka-console-consumer.bat --topic first_topic --group my-first-application -fro
 kafka-consumer-groups.bat --list --bootstrap-server localhost:9092
 
 kafka-consumer-groups.bat --describe --group my-second-application --bootstrap-server localhost:9092
+kafka-console-consumer.bat --topic first_topic --group my-second-application --bootstrap-server localhost:9092
 kafka-console-consumer.bat --topic first_topic --group my-second-application --bootstrap-server localhost:9092

@@ -11,7 +11,7 @@ spark = SparkSession \
 
 raw_df = spark.readStream \
         .format("json") \
-        .option("path", "driver") \
+        .option("path", "rebu\driver") \
         .option("maxFilesPerTrigger", 1) \
         .option("inferSchema", "True") \
         .option("multiLine", "True") \
@@ -22,7 +22,7 @@ driverWriterQuery = raw_df.writeStream \
         .queryName("Flattened Driver Writer") \
         .outputMode("append") \
         .option("path", "driver-output") \
-        .option("checkpointLocation", "chk-point-dir") \
+        .option("checkpointLocation", "chk-point-dir-driver") \
         .trigger(processingTime="1 minute") \
         .start()
 driverWriterQuery.awaitTermination()

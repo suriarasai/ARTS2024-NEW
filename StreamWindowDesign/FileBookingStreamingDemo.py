@@ -11,7 +11,7 @@ spark = SparkSession \
 
 raw_df = spark.readStream \
         .format("csv") \
-        .option("path", "booking") \
+        .option("path", "rebu\booking") \
         .option("maxFilesPerTrigger", 1) \
         .option("inferSchema", "True") \
         .load()
@@ -21,7 +21,7 @@ bookingWriterQuery = raw_df.writeStream \
         .queryName("Flattened Driver Writer") \
         .outputMode("append") \
         .option("path", "booking-output") \
-        .option("checkpointLocation", "chk-point-dir") \
+        .option("checkpointLocation", "chk-point-dir-booking") \
         .trigger(processingTime="10 seconds") \
         .start()
 bookingWriterQuery.awaitTermination()
