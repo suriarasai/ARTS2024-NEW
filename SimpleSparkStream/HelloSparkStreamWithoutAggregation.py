@@ -25,7 +25,7 @@ words = lines.select( \
 
 query = words \
     .writeStream \
-    .outputMode("complete") \
+    .outputMode("append") \
     .format("console") \
     .start()
 
