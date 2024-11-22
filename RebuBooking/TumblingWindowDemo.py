@@ -51,8 +51,8 @@ final_output_df.show(truncate=False)
 window_query = output_df.writeStream \
     .format("console") \
     .outputMode("update") \
-    .option("checkpointLocation", "chk-point-dir") \
-    .trigger(processingTime="1 minute") \
+    .option("checkpointLocation", "chk-point-dir-trades") \
+    .trigger(processingTime="10 seconds") \
     .start()
 
 window_query.awaitTermination()

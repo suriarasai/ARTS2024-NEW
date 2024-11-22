@@ -21,7 +21,6 @@ kafka_source_df = spark \
     .format("kafka") \
     .option("kafka.bootstrap.servers", "localhost:9092") \
     .option("subscribe", "sensor") \
-    .option("startingOffsets", "earliest") \
     .load()
 
 value_df = kafka_source_df.select(col("key").cast("string").alias("SensorID"),

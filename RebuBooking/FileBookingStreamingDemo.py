@@ -22,7 +22,7 @@ bookingWriterQuery = raw_df.writeStream \
         .outputMode("append") \
         .option("path", "booking-output") \
         .option("checkpointLocation", "chk-point-dir-file-booking") \
-        .trigger(processingTime="10 seconds") \
+        .trigger(processingTime="5 seconds") \
         .start()
 bookingWriterQuery.awaitTermination()
 

@@ -6,6 +6,8 @@ from pyspark.sql.types import StructField
 # Initialize Spark session
 spark = SparkSession.builder \
     .appName("TaxiBookingProcessor") \
+    .config("spark.jars.packages", "org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.2") \
+    .config("spark.streaming.stopGracefullyOnShutdown", "true") \
     .getOrCreate()
 
 # Kafka configuration
@@ -16,8 +18,9 @@ kafka_topic = "taxi_bookings"
 taxi_stream_df = spark.readStream \
     .format("kafka") \
     .option("kafka.bootstrap.servers", kafka_bootstrap_servers) \
+    .option("startingOffsets", "earliest") \
     .option("subscribe", kafka_topic) \
-    .load()
+     .load()
 
 # Define the schema for the booking data
 booking_schema = StructType([
