@@ -13,7 +13,7 @@ lines = spark \
     .readStream \
     .format("socket") \
     .option("host", "localhost") \
-    .option("port", 9999) \
+    .option("port", 9998) \
     .load()
 
 # Split the lines into words
@@ -28,7 +28,7 @@ wordCounts = words.groupBy("word").count()
 
 query = wordCounts \
     .writeStream \
-    .outputMode("complete") \
+    .outputMode("update") \
     .format("console") \
     .start()
 
